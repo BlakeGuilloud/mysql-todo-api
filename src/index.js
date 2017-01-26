@@ -4,10 +4,10 @@ import { Model }  from 'objection';
 import cors       from 'cors';
 import path       from 'path';
 
-import todoRouter  from './routers/Todo.router';
+import todoRouter from './routes/Todo.router';
 
 import knex       from 'knex';
-import knexConfig from './knexfile.js';
+import knexConfig from '../knexfile.js';
 
 const connection = knex(knexConfig);
 
@@ -17,13 +17,12 @@ Model.knex(connection);
 
 const app = express();
 
-app.set('appPath', path.join('', 'client'));
 app.use(cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(`${app.get('appPath')}/build`));
 
-// app.use('/api/todos', todoRouter);
+app.use('/api/todos', todoRouter);
 
 const port = process.env.PORT || 8080;
 

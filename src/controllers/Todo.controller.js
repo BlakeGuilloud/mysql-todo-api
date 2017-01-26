@@ -1,4 +1,4 @@
-import * as todoService from '../db/services/Todo.service';
+import * as todoService from '../services/Todo.service';
 import { SendSuccess, SendError } from 'tael';
 
 export function postTodo(req, res) {
